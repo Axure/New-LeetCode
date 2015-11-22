@@ -84,6 +84,9 @@ class BinaryTree {
   void print() const;
   int getWidth(int elementWidth) const;
   int getDepth() const;
+
+  void fillInBoard(const BinaryTree *node, int boardWidth, std::string *board, int baseDepth, int baseWidth) const;
+  static std::string toString(T value);
 };
 
 #endif //LEETCODE_BINARYTREE_H

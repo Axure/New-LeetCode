@@ -162,15 +162,16 @@ template<typename T>
 void BinaryTree<T>::print() const {
   const auto depth = this->getDepth();
   const auto width = this->getWidth(1);
-  auto buffer = new char[depth * width];
+  auto buffer = new std::string[depth * width];
 
   for (int i = 0; i < this->getDepth(); ++i) {
     for (int j = 0; j < this->getWidth(1); ++j) {
-      buffer[i * width + j] = '*';
+      buffer[i * width + j] = '_';
     }
     std::cout << std::endl;
   }
 
+  this->fillInBoard(this, width, buffer, 0, 0);
   for (int i = 0; i < this->getDepth(); ++i) {
     for (int j = 0; j < this->getWidth(1); ++j) {
       std::cout << buffer[i * width + j];
@@ -178,11 +179,55 @@ void BinaryTree<T>::print() const {
     std::cout << std::endl;
   }
 
-  delete buffer;
+//  delete buffer; // TODO: figure out why this cannot be deleted: `pointer being freed was not allocated`.
 }
 
-//template <typename T>
-//void BinaryTree<T>::printInsideBoard(int boardWidth, )
+/**
+ *
+ */
+template<typename T>
+void BinaryTree<T>::fillInBoard(const BinaryTree<T> *node,
+                                int boardWidth,
+                                std::string *board,
+                                int baseDepth,
+                                int baseWidth) const {
+  std::cout << "paramters: " << boardWidth << ", " << baseDepth << ", " << baseWidth << std::endl;
+  const int width = node->getWidth(1);
+  const auto pLeft = node->getLeft();
+  const auto pRight = node->getRight();
+  const int leftWidth = pLeft == nullptr ? 0 : pLeft->getWidth(1);
+  const int rightWidth = pRight == nullptr ? 0 : pRight->getWidth(1);
+  /**
+   * Fill the exact place with an indicator.
+   */
+  /**
+   * Fill the other positions with a placeholder.
+   */
+  const int baseIndex = baseDepth * boardWidth + baseWidth;
+  std::cout << "calculated: " << width << ", " << leftWidth << ", " << rightWidth << ", " << baseIndex << std::endl;
+  for (int i = baseIndex; i < baseIndex + leftWidth; ++i) {
+    board[i] = '_';
+  }
+  for (int i = baseIndex + leftWidth; i < baseIndex + leftWidth + 3; ++i) {
+    if (i == baseIndex + leftWidth + 1) {
+      board[i] = BinaryTree<T>::toString(node->getValue());
+    } else {
+      board[i] = '*';
+    }
+  }
+  for (int i = baseIndex + leftWidth + 3; i < baseIndex + width; ++i) {
+    board[i] = '_';
+  }
+  /**
+   * Fill in the domains controlled by its children.
+   */
+  if (pLeft != nullptr) {
+    this->fillInBoard(pLeft, boardWidth, board, baseDepth + 1, baseWidth);
+  }
+  if (pRight != nullptr) {
+    this->fillInBoard(pRight, boardWidth, board, baseDepth + 1, baseWidth + leftWidth + 3);
+  }
+}
 
 template<typename T>
 int BinaryTree<T>::getWidth(int elementWidth) const {
@@ -203,6 +248,11 @@ int BinaryTree<T>::getDepth() const {
   int depthRight = pRight == nullptr ? 0 : pRight->getDepth();
 
   return 1 + std::max(depthLeft, depthRight);
+}
+
+template<>
+std::string BinaryTree<int>::toString(int value) {
+  return std::to_string(value);
 }
 
 template

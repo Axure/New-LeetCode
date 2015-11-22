@@ -34,9 +34,9 @@ int main(int argc, char *argv[]) {
   std::cout << "[main]: The depth of a is " << a->getDepth() << std::endl;
   std::cout << "[main]: The width of a is " << a->getWidth(1) << std::endl;
 
-  delete a;
+//  delete a;
   b->preOrderTraverse(f);
-  delete b;
+//  delete b;
   c->preOrderTraverse(f);
 
   return 0;

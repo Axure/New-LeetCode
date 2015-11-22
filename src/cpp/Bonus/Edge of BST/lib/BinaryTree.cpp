@@ -53,7 +53,7 @@ BinaryTree<T>::BinaryTree(T value) : BinaryTree() {
 }
 
 template<typename T>
-void BinaryTree<T>::preOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda) {
+void BinaryTree<T>::preOrderTraverse(const std::function<void(BinaryTree<T> *const)> &lambda) {
   /**
    * Traverse the root.
    */
@@ -79,9 +79,9 @@ void BinaryTree<T>::preOrderTraverse(const std::function<void(BinaryTree<T>* con
 }
 
 template<typename T>
-std::vector<BinaryTree<T>*> BinaryTree<T>::getPreOrderList() {
-  std::vector<BinaryTree<T>*> result;
-  auto push = [&result](BinaryTree<T> * const element) mutable {
+std::vector<BinaryTree<T> *> BinaryTree<T>::getPreOrderList() {
+  std::vector<BinaryTree<T> *> result;
+  auto push = [&result](BinaryTree<T> *const element) mutable {
     result.push_back(element);
   };
   this->preOrderTraverse(push);
@@ -89,7 +89,7 @@ std::vector<BinaryTree<T>*> BinaryTree<T>::getPreOrderList() {
 }
 
 template<typename T>
-void BinaryTree<T>::inOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda) {
+void BinaryTree<T>::inOrderTraverse(const std::function<void(BinaryTree<T> *const)> &lambda) {
   auto pLeft = this->getLeft();
   /**
    * Traverse the left branch.
@@ -115,7 +115,7 @@ void BinaryTree<T>::inOrderTraverse(const std::function<void(BinaryTree<T>* cons
 }
 
 template<typename T>
-void BinaryTree<T>::postOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda) {
+void BinaryTree<T>::postOrderTraverse(const std::function<void(BinaryTree<T> *const)> &lambda) {
   auto pLeft = this->getLeft();
   /**
    * Traverse the left branch.
@@ -158,15 +158,15 @@ BinaryTree<T> *BinaryTree<T>::createRight(T value) {
 
 #include <algorithm>
 
-template <typename T>
-void BinaryTree<T>::print() {
+template<typename T>
+void BinaryTree<T>::print() const {
   const auto depth = this->getDepth();
   const auto width = this->getWidth(1);
   auto buffer = new char[depth * width];
 
   for (int i = 0; i < this->getDepth(); ++i) {
     for (int j = 0; j < this->getWidth(1); ++j) {
-      buffer[i * width + j] =  '*';
+      buffer[i * width + j] = '*';
     }
     std::cout << std::endl;
   }
@@ -184,9 +184,8 @@ void BinaryTree<T>::print() {
 //template <typename T>
 //void BinaryTree<T>::printInsideBoard(int boardWidth, )
 
-template <typename T>
-int BinaryTree<T>::getWidth(int elementWidth) {
-
+template<typename T>
+int BinaryTree<T>::getWidth(int elementWidth) const {
 
   auto pLeft = this->getLeft();
   auto pRight = this->getRight();
@@ -196,16 +195,15 @@ int BinaryTree<T>::getWidth(int elementWidth) {
   return elementWidth + 2 + widthLeft + widthRight;
 }
 
-template <typename T>
-int BinaryTree<T>::getDepth() {
+template<typename T>
+int BinaryTree<T>::getDepth() const {
   auto pLeft = this->getLeft();
   auto pRight = this->getRight();
   int depthLeft = pLeft == nullptr ? 0 : pLeft->getDepth();
   int depthRight = pRight == nullptr ? 0 : pRight->getDepth();
-  
+
   return 1 + std::max(depthLeft, depthRight);
 }
-
 
 template
 class BinaryTree<int>;

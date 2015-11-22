@@ -19,7 +19,8 @@ class BinaryTree {
   int _referenceCount;
 
   void setReferenceCount(int value) {
-    std::cout << "[BinaryTree]: The reference count of " << this << " is set to " << value << ", previously " << _referenceCount << std::endl;
+    std::cout << "[BinaryTree]: The reference count of " << this << " is set to " << value << ", previously "
+        << _referenceCount << std::endl;
     this->_referenceCount = value;
   }
 
@@ -52,7 +53,7 @@ class BinaryTree {
     this->setReferenceCount(this->getReferenceCount() - 1);
   }
 
-  void setLeft(BinaryTree *pLeft) {
+  void setLeft(BinaryTree *const pLeft) {
     if (this->pLeft != nullptr) {
       this->pLeft->decreaseReferenceCount();
     }
@@ -60,7 +61,7 @@ class BinaryTree {
     pLeft->increaseReferenceCount();
   }
 
-  void setRight(BinaryTree *pRight) {
+  void setRight(BinaryTree *const pRight) {
     if (this->pRight != nullptr) {
       this->pRight->decreaseReferenceCount();
     }
@@ -72,18 +73,17 @@ class BinaryTree {
     this->_value = _value;
   }
 
-  void preOrderTraverse(const std::function<void(BinaryTree * const)> &lambda);
-  std::vector<BinaryTree*> getPreOrderList();
-  void inOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda);
-  void postOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda);
+  void preOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
+  std::vector<BinaryTree *> getPreOrderList();
+  void inOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
+  void postOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
 
   BinaryTree *createLeft(T value);
   BinaryTree *createRight(T value);
 
-
-  void print();
-  int getWidth(int elementWidth);
-  int getDepth();
+  void print() const;
+  int getWidth(int elementWidth) const;
+  int getDepth() const;
 };
 
 #endif //LEETCODE_BINARYTREE_H

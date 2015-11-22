@@ -17,8 +17,7 @@ int main(int argc, char *argv[]) {
   a->setRight(d);
   c->createLeft(7)->createRight(9);
 
-
-  std::function<void(BinaryTree<int> * const)> f = print;
+  std::function<void(BinaryTree<int> *const)> f = print;
 
   std::cout << "[main]: Preorder traversal: ";
   a->preOrderTraverse(f);
@@ -29,7 +28,7 @@ int main(int argc, char *argv[]) {
   a->print();
   auto r = a->getPreOrderList();
   for (auto rs: r) {
-    std::cout << "Traverse from vector: "  << rs->getValue() << std::endl;
+    std::cout << "Traverse from vector: " << rs->getValue() << std::endl;
   }
 
   std::cout << "[main]: The depth of a is " << a->getDepth() << std::endl;

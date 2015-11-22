@@ -8,7 +8,10 @@ template <typename T>
 Bst<T>::Bst() {
 
 }
+
 template <typename T>
 Bst<T>::~Bst() {
 
 }
+
+template class Bst<int>;

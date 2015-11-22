@@ -6,6 +6,7 @@
 #define LEETCODE_BINARYTREE_H
 
 #include <functional>
+#include <iostream>
 
 template<typename T>
 class BinaryTree {
@@ -17,6 +18,7 @@ class BinaryTree {
   int _referenceCount;
 
   void setReferenceCount(int value) {
+    std::cout << "[BinaryTree]: The reference count of " << this << " is set to " << value << ", previously " << _referenceCount << std::endl;
     this->_referenceCount = value;
   }
 
@@ -42,19 +44,27 @@ class BinaryTree {
   }
 
   void increaseReferenceCount() {
-    this->_referenceCount++;
+    this->setReferenceCount(this->getReferenceCount() + 1);
   }
 
   void decreaseReferenceCount() {
-    this->_referenceCount--;
+    this->setReferenceCount(this->getReferenceCount() - 1);
   }
 
   void setLeft(BinaryTree *pLeft) {
+    if (this->pLeft != nullptr) {
+      this->pLeft->decreaseReferenceCount();
+    }
     this->pLeft = pLeft;
+    pLeft->increaseReferenceCount();
   }
 
   void setRight(BinaryTree *pRight) {
+    if (this->pRight != nullptr) {
+      this->pRight->decreaseReferenceCount();
+    }
     this->pRight = pRight;
+    pRight->increaseReferenceCount();
   }
 
   void setValue(T _value) {
@@ -62,6 +72,8 @@ class BinaryTree {
   }
 
   void preOrderTraverse(std::function<void(T)> &lambda);
+  void inOrderTraverse(std::function<void(T)> &lambda);
+  void postOrderTraverse(std::function<void(T)> &lambda);
 };
 
 #endif //LEETCODE_BINARYTREE_H

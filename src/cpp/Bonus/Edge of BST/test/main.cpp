@@ -13,13 +13,23 @@ int main(int argc, char *argv[]) {
   auto *c = new BinaryTree<int>(5);
   auto *d = new BinaryTree<int>(6);
   a->setLeft(b);
-  b->setLeft(d);
-  a->setRight(c);
+  b->setLeft(c);
+  a->setRight(d);
 
 
   std::function<void(int)> f = print;
 
+  std::cout << "Preorder traversal: ";
   a->preOrderTraverse(f);
+  std::cout << "Inorder traversal: ";
+  a->inOrderTraverse(f);
+  std::cout << "Postorder traversal: ";
+  a->postOrderTraverse(f);
+  delete a;
+  b->preOrderTraverse(f);
+  delete b;
+  c->preOrderTraverse(f);
+
   return 0;
 
 };

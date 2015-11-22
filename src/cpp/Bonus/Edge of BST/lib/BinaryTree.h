@@ -50,15 +50,15 @@ class BinaryTree {
   }
 
   void setLeft(BinaryTree *pLeft) {
-    BinaryTree::pLeft = pLeft;
+    this->pLeft = pLeft;
   }
 
   void setRight(BinaryTree *pRight) {
-    BinaryTree::pRight = pRight;
+    this->pRight = pRight;
   }
 
   void setValue(T _value) {
-    BinaryTree::_value = _value;
+    this->_value = _value;
   }
 
   void preOrderTraverse(std::function<void(T)> &lambda);

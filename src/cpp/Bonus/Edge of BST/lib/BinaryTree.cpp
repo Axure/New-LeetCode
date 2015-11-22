@@ -3,13 +3,14 @@
 //
 
 #include <stddef.h>
+#include <iostream>
 #include "BinaryTree.h"
 
 /**
  * Cascading deletion. // TODO: What if the deletions are not cascading? E.g. using ARC?
  */
 template<typename T>
-BinaryTree::~BinaryTree() {
+BinaryTree<T>::~BinaryTree() {
 
   auto pLeft = this->getLeft();
   /**
@@ -41,24 +42,28 @@ BinaryTree::~BinaryTree() {
 }
 
 template<typename T>
-BinaryTree::BinaryTree() {
-  this->setReferenceCount(0);
+BinaryTree<T>::BinaryTree(): pLeft(nullptr), pRight(nullptr), _referenceCount(0) {
 }
 
 template<typename T>
-BinaryTree::BinaryTree(T value) {
+BinaryTree<T>::BinaryTree(T value): BinaryTree() {
+  std::cout << "initialized with" << value << std::endl;
   this->setValue(value);
 }
 
 template<typename T>
-void BinaryTree::preOrderTraverse(std::function<void(T)> &lambda) {
+void BinaryTree<T>::preOrderTraverse(std::function<void(T)> &lambda) {
   lambda(this->getValue());
   auto pLeft = this->getLeft();
   if (pLeft != nullptr) {
+    std::cout << "left" << std::endl;
     pLeft->preOrderTraverse(lambda);
   }
   auto pRight = this->getRight();
   if (pRight != nullptr) {
+    std::cout << "right" << std::endl;
     pRight->preOrderTraverse(lambda);
   }
 }
+
+template class BinaryTree<int>;

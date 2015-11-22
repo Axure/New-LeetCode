@@ -8,7 +8,7 @@
 #include "BinaryTree.h"
 
 template <typename T>
-class Bst: BinaryTree {
+class Bst: BinaryTree<T> {
 
  public:
   Bst();

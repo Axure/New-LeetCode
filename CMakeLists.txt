@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.0)
 project(LeetCode)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(RANGE_SUM_QUERY_2D_IMMUTABLE "src/cpp/Algorithms/304 Range Sum Query 2D - Immutable/main.cpp")
 add_executable(RangeSumQuery2D-Immutable ${RANGE_SUM_QUERY_2D_IMMUTABLE})

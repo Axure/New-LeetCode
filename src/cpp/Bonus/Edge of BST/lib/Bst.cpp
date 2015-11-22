@@ -4,10 +4,11 @@
 
 #include "Bst.h"
 
-Bst::Bst() {
+template <typename T>
+Bst<T>::Bst() {
 
 }
-
-Bst::~Bst() {
+template <typename T>
+Bst<T>::~Bst() {
 
 }

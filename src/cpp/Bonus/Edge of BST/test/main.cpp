@@ -2,8 +2,8 @@
 
 #include "../lib/Bst.h"
 
-void print(int a) {
-  std::cout << a << ", ";
+void print(BinaryTree<int> const *a) {
+  std::cout << a->getValue() << ", ";
 }
 
 int main(int argc, char *argv[]) {
@@ -15,16 +15,26 @@ int main(int argc, char *argv[]) {
   a->setLeft(b);
   b->setLeft(c);
   a->setRight(d);
+  c->createLeft(7)->createRight(9);
 
 
-  std::function<void(int)> f = print;
+  std::function<void(BinaryTree<int> * const)> f = print;
 
-  std::cout << "Preorder traversal: ";
+  std::cout << "[main]: Preorder traversal: ";
   a->preOrderTraverse(f);
-  std::cout << "Inorder traversal: ";
+  std::cout << "[main]: Inorder traversal: ";
   a->inOrderTraverse(f);
-  std::cout << "Postorder traversal: ";
+  std::cout << "[main]: Postorder traversal: ";
   a->postOrderTraverse(f);
+  a->print();
+  auto r = a->getPreOrderList();
+  for (auto rs: r) {
+    std::cout << "Traverse from vector: "  << rs->getValue() << std::endl;
+  }
+
+  std::cout << "[main]: The depth of a is " << a->getDepth() << std::endl;
+  std::cout << "[main]: The width of a is " << a->getWidth(1) << std::endl;
+
   delete a;
   b->preOrderTraverse(f);
   delete b;

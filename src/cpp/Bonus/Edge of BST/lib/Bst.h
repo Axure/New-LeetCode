@@ -13,6 +13,7 @@ class Bst: BinaryTree<T> {
  public:
   Bst();
   virtual ~Bst();
+  const Bst &insert(T value);
 };
 
 

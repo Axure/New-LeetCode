@@ -7,6 +7,7 @@
 
 #include <functional>
 #include <iostream>
+#include <vector>
 
 template<typename T>
 class BinaryTree {
@@ -27,11 +28,11 @@ class BinaryTree {
   BinaryTree();
   BinaryTree(T value);
 
-  BinaryTree *getLeft() const {
+  virtual BinaryTree *getLeft() const {
     return pLeft;
   }
 
-  BinaryTree *getRight() const {
+  virtual BinaryTree *getRight() const {
     return pRight;
   }
 
@@ -71,9 +72,18 @@ class BinaryTree {
     this->_value = _value;
   }
 
-  void preOrderTraverse(std::function<void(T)> &lambda);
-  void inOrderTraverse(std::function<void(T)> &lambda);
-  void postOrderTraverse(std::function<void(T)> &lambda);
+  void preOrderTraverse(const std::function<void(BinaryTree * const)> &lambda);
+  std::vector<BinaryTree*> getPreOrderList();
+  void inOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda);
+  void postOrderTraverse(const std::function<void(BinaryTree<T>* const)> &lambda);
+
+  BinaryTree *createLeft(T value);
+  BinaryTree *createRight(T value);
+
+
+  void print();
+  int getWidth(int elementWidth);
+  int getDepth();
 };
 
 #endif //LEETCODE_BINARYTREE_H

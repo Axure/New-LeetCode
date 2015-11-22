@@ -15,3 +15,11 @@ Bst<T>::~Bst() {
 }
 
 template class Bst<int>;
+
+template <typename T>
+const Bst<T> &Bst<T>::insert(T value) {
+
+
+
+  return std::move(*this);
+}

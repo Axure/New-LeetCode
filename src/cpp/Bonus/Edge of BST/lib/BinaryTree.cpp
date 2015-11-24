@@ -37,7 +37,7 @@ BinaryTree<T>::~BinaryTree() {
      * If already nothing references to the right child, destroy it.
      */
     if (pRight->getReferenceCount() <= 0) {
-      this->pRight->~BinaryTree();
+      pRight->~BinaryTree();
     }
   }
 }
@@ -179,7 +179,7 @@ void BinaryTree<T>::print() const {
     std::cout << std::endl;
   }
 
-//  delete buffer; // TODO: figure out why this cannot be deleted: `pointer being freed was not allocated`.
+//  std::free(buffer); // TODO: figure out why this cannot be deleted: `pointer being freed was not allocated`.
 }
 
 /**

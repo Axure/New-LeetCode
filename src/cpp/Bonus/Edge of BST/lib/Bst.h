@@ -7,14 +7,55 @@
 
 #include "BinaryTree.h"
 
-template <typename T>
-class Bst: BinaryTree<T> {
+template<typename T>
+class Bst: public BinaryTree<T> {
 
  public:
   Bst();
   virtual ~Bst();
-  const Bst &insert(T value);
-};
+  Bst<T> *const insert(T value);
 
+  Bst(T value) : BinaryTree<T>(value) {
+  }
+
+  Bst *getLeft() const override {
+    return (Bst *) this->pLeft;
+  }
+
+  Bst *getRight() const override {
+    return (Bst *) this->pRight;
+  }
+
+  void setLeft(Bst *const pLeft) {
+    if (this->getLeft() != nullptr) {
+      this->getLeft()->decreaseReferenceCount();
+    }
+    this->pLeft = pLeft;
+    pLeft->increaseReferenceCount();
+  }
+
+  void setRight(Bst *const pRight) {
+    if (this->getRight() != nullptr) {
+      this->getRight()->decreaseReferenceCount();
+    }
+    this->pRight = pRight;
+    pRight->increaseReferenceCount();
+  }
+
+  Bst *createLeft(T value) override{
+    if (this->getLeft() == nullptr) {
+      this->setLeft(new Bst(value));
+    }
+    return this->getLeft();
+  };
+  
+  Bst *createRight(T value)override {
+    if (this->getRight() == nullptr) {
+      this->setRight(new Bst(value));
+    }
+    return this->getRight();
+  };
+
+};
 
 #endif //LEETCODE_BST_H

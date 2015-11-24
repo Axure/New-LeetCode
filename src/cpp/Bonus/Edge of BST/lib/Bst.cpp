@@ -14,12 +14,28 @@ Bst<T>::~Bst() {
 
 }
 
-template class Bst<int>;
-
 template <typename T>
-const Bst<T> &Bst<T>::insert(T value) {
+Bst<T> *const Bst<T>::insert(T value) {
+  if (value < this->getValue()) {
+    auto pLeft = this->getLeft();
+    if (pLeft != nullptr) {
+      this->getLeft()->insert(value);  
+    } else {
+      this->createLeft(value);
+    }
+    
+  } else {
+    auto pRight = this->getRight();
+    if (pRight != nullptr) {
+      this->getRight()->insert(value);
+    } else {
+      this->createRight(value);
+    }
+  }
 
 
-
-  return std::move(*this);
+  return this;
 }
+
+template
+class Bst<int>;

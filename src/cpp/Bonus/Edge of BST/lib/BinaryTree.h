@@ -12,9 +12,11 @@
 template<typename T>
 class BinaryTree {
 
+ protected:
+  void *pLeft;
+  void *pRight;
+
  private:
-  BinaryTree *pLeft;
-  BinaryTree *pRight;
   T _value;
   int _referenceCount;
 
@@ -30,11 +32,11 @@ class BinaryTree {
   BinaryTree(T value);
 
   virtual BinaryTree *getLeft() const {
-    return pLeft;
+    return (BinaryTree*)pLeft;
   }
 
   virtual BinaryTree *getRight() const {
-    return pRight;
+    return (BinaryTree*)pRight;
   }
 
   T getValue() const {
@@ -53,17 +55,17 @@ class BinaryTree {
     this->setReferenceCount(this->getReferenceCount() - 1);
   }
 
-  void setLeft(BinaryTree *const pLeft) {
-    if (this->pLeft != nullptr) {
-      this->pLeft->decreaseReferenceCount();
+  virtual void setLeft(BinaryTree *const pLeft) {
+    if (this->getLeft() != nullptr) {
+      this->getLeft()->decreaseReferenceCount();
     }
     this->pLeft = pLeft;
     pLeft->increaseReferenceCount();
   }
 
-  void setRight(BinaryTree *const pRight) {
-    if (this->pRight != nullptr) {
-      this->pRight->decreaseReferenceCount();
+  virtual void setRight(BinaryTree *const pRight) {
+    if (this->getRight() != nullptr) {
+      this->getRight()->decreaseReferenceCount();
     }
     this->pRight = pRight;
     pRight->increaseReferenceCount();
@@ -78,8 +80,8 @@ class BinaryTree {
   void inOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
   void postOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
 
-  BinaryTree *createLeft(T value);
-  BinaryTree *createRight(T value);
+  virtual BinaryTree *createLeft(T value);
+  virtual BinaryTree *createRight(T value);
 
   void print() const;
   int getWidth(int elementWidth) const;

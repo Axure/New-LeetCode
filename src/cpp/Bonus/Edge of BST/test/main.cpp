@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
   b->setLeft(c);
   a->setRight(d);
   c->createLeft(7)->createRight(9);
+  d->createLeft(1)->createRight(2);
 
   std::function<void(BinaryTree<int> *const)> f = print;
 
@@ -34,10 +35,15 @@ int main(int argc, char *argv[]) {
   std::cout << "[main]: The depth of a is " << a->getDepth() << std::endl;
   std::cout << "[main]: The width of a is " << a->getWidth(1) << std::endl;
 
-//  delete a;
+  delete a;
   b->preOrderTraverse(f);
-//  delete b;
+  delete b;
   c->preOrderTraverse(f);
+
+  auto *p = new Bst<int>(3);
+  p->insert(5)->insert(1)->insert(2)->insert(4);
+  p->print();
+
 
   return 0;
 

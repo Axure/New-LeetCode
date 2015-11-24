@@ -141,7 +141,7 @@ void BinaryTree<T>::postOrderTraverse(const std::function<void(BinaryTree<T> *co
 }
 
 template<typename T>
-BinaryTree<T> *BinaryTree<T>::createLeft(T value) {
+BinaryTree<T> *const BinaryTree<T>::createLeft(T value) {
   if (this->getLeft() == nullptr) {
     this->setLeft(new BinaryTree(value));
   }
@@ -149,7 +149,7 @@ BinaryTree<T> *BinaryTree<T>::createLeft(T value) {
 }
 
 template<typename T>
-BinaryTree<T> *BinaryTree<T>::createRight(T value) {
+BinaryTree<T> *const BinaryTree<T>::createRight(T value) {
   if (this->getRight() == nullptr) {
     this->setRight(new BinaryTree(value));
   }

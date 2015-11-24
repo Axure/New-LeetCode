@@ -42,14 +42,14 @@ class Bst: public BinaryTree<T> {
     pRight->increaseReferenceCount();
   }
 
-  Bst *createLeft(T value) override{
+  Bst *const createLeft(T value) override {
     if (this->getLeft() == nullptr) {
       this->setLeft(new Bst(value));
     }
     return this->getLeft();
   };
-  
-  Bst *createRight(T value)override {
+
+  Bst * const createRight(T value) override {
     if (this->getRight() == nullptr) {
       this->setRight(new Bst(value));
     }

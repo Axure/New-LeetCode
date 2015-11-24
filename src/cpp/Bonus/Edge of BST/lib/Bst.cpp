@@ -4,26 +4,26 @@
 
 #include "Bst.h"
 
-template <typename T>
+template<typename T>
 Bst<T>::Bst() {
 
 }
 
-template <typename T>
+template<typename T>
 Bst<T>::~Bst() {
 
 }
 
-template <typename T>
+template<typename T>
 Bst<T> *const Bst<T>::insert(T value) {
   if (value < this->getValue()) {
     auto pLeft = this->getLeft();
     if (pLeft != nullptr) {
-      this->getLeft()->insert(value);  
+      this->getLeft()->insert(value);
     } else {
       this->createLeft(value);
     }
-    
+
   } else {
     auto pRight = this->getRight();
     if (pRight != nullptr) {
@@ -32,7 +32,6 @@ Bst<T> *const Bst<T>::insert(T value) {
       this->createRight(value);
     }
   }
-
 
   return this;
 }

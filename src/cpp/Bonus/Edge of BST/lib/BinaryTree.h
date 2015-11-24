@@ -80,8 +80,8 @@ class BinaryTree {
   void inOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
   void postOrderTraverse(const std::function<void(BinaryTree *const)> &lambda);
 
-  virtual BinaryTree *createLeft(T value);
-  virtual BinaryTree *createRight(T value);
+  virtual BinaryTree *const createLeft(T value);
+  virtual BinaryTree *const createRight(T value);
 
   void print() const;
   int getWidth(int elementWidth) const;

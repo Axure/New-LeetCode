@@ -1,6 +1,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include "../Logger.h"
 namespace Axurez {
 namespace DataStructure {
 
@@ -53,7 +54,18 @@ class RIA {
     return this->_content.at(this->_indexMap.at(index));
   }
 
-  int size() const {
+  TIndex findIndex(const TContent &content) {
+    TIndex result;
+    try {
+      result = this->_reverseIndex.at(content);
+    } catch (std::exception ex) {
+      Logger::getInstance().error("ReversedIndexedArray.hpp", ex.what());
+      throw ex;
+    }
+    return result;
+  }
+
+  std::size_t size() const {
     return this->_content.size();
   }
 };

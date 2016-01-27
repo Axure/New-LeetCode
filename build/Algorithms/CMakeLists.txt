@@ -41,3 +41,7 @@ add_executable(CREATE_MAXIMUM_NUMBER_ONE_DIMENSIONAL
 add_executable(91_Decode_Ways
         "../../src/cpp/Algorithms/91 Decode Ways/test.cpp"
         "../../src/cpp/Algorithms/91 Decode Ways/solution.hpp")
+
+add_executable(328_Odd_Even_Linked_List
+        "../../src/cpp/Algorithms/328 Odd Even Linked List/solution.hpp"
+        "../../src/cpp/Algorithms/328 Odd Even Linked List/main.cpp")

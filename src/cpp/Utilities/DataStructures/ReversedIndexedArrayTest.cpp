@@ -12,7 +12,7 @@ int main() {
   Axurez::Logger::getInstance().log("ReversedIndexedArray.hpp", "haha");
   try {
     std::cout << ria.at(4) << std::endl;
-  } catch (std::out_of_range ex){
+  } catch (std::out_of_range ex) {
     std::cout << ex.what() << std::endl;
   }
 
@@ -24,7 +24,7 @@ int main() {
   }
 
   std::cout << ria.size() << std::endl;
-  std::cout << ria.at(5)<< std::endl;
+  std::cout << ria.at(5) << std::endl;
 //  std::cout << ria[2];
   return 0;
 }

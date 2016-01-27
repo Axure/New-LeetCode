@@ -6,7 +6,7 @@ namespace Axurez {
 namespace DataStructure {
 
 
-template <class TIndex, class TContent>
+template<class TIndex, class TContent>
 #ifdef AXUREZ_MAP_ORDERED_
 class Map: public std::map<TIndex, TContent> {
 
@@ -17,7 +17,7 @@ class Map: public std::unordered_map<TIndex, TContent> {
 };
 #endif
 
-template <class TIndex, class TContent>
+template<class TIndex, class TContent>
 class RIA {
  private:
   std::vector<TContent> _content;
@@ -32,7 +32,7 @@ class RIA {
 
   }
 
-  const TContent& at(TIndex index) const {
+  const TContent &at(TIndex index) const {
     std::size_t nIndex;
     try {
       nIndex = _indexMap.at(index);
@@ -43,10 +43,9 @@ class RIA {
   }
 
 
+  TContent &operator[](TIndex index) {
 
-  TContent& operator [](TIndex index) {
-
-    if( this->_indexMap.find(index) == this->_indexMap.end()) {
+    if (this->_indexMap.find(index) == this->_indexMap.end()) {
       this->_indexMap[index] = this->_content.size();
       auto _newElem = TContent();
       this->_content.push_back(_newElem);

@@ -26,11 +26,11 @@ class Logger {
 
   static bool up_;
   static int count_;
-  static Logger* instance_;
+  static Logger *instance_;
 
 
   static Logger &getInstance() {
-    Logger::count_ ++;
+    Logger::count_++;
     if (Logger::up_) {
       assert(Logger::instance_ != nullptr);
       return *Logger::instance_;
@@ -43,7 +43,7 @@ class Logger {
   }
 
   ~Logger() {
-    Logger::count_ --;
+    Logger::count_--;
   }
 
 

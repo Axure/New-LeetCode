@@ -45,3 +45,7 @@ add_executable(91_Decode_Ways
 add_executable(328_Odd_Even_Linked_List
         "../../src/cpp/Algorithms/328 Odd Even Linked List/solution.hpp"
         "../../src/cpp/Algorithms/328 Odd Even Linked List/main.cpp")
+
+add_executable(330_Patching_Array
+        "../../src/cpp/Algorithms/330. Patching Array/main.cpp"
+        "../../src/cpp/Algorithms/330. Patching Array/Solution.hpp")

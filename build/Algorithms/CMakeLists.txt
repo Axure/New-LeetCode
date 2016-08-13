@@ -46,6 +46,17 @@ add_executable(328_Odd_Even_Linked_List
         "../../src/cpp/Algorithms/328 Odd Even Linked List/solution.hpp"
         "../../src/cpp/Algorithms/328 Odd Even Linked List/main.cpp")
 
+add_executable(329_Longest_Increasing_Path_in_a_Matrix
+        "../../src/cpp/Algorithms/329. Longest Increasing Path in a Matrix/main.cpp"
+        "../../src/cpp/Algorithms/329. Longest Increasing Path in a Matrix/Solution.hpp")
+
 add_executable(330_Patching_Array
         "../../src/cpp/Algorithms/330. Patching Array/main.cpp"
         "../../src/cpp/Algorithms/330. Patching Array/Solution.hpp")
+
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+add_executable(7_Reverse_Integer
+        "../../src/cpp/Algorithms/7. Reverse Integer/main.cpp"
+        "../../src/cpp/Algorithms/7. Reverse Integer/Solution.hpp")
+target_link_libraries(7_Reverse_Integer gtest gtest_main)
